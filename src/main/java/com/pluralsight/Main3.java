@@ -2,10 +2,11 @@ package com.pluralsight;
 
 import java.util.Scanner;
 
-public class Main {
+public class Main3 {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+
 
         //Collect Billing Address
         System.out.println("Please provide the following information: \n" +
@@ -25,25 +26,25 @@ public class Main {
         System.out.println("Zip Code: ");
         String billingZipCode = scanner.nextLine().trim();
 
-        //Built a String for Billing Address
-        StringBuilder billingAddress = new StringBuilder();
-        billingAddress.append(billingStreet + "\n");
-        billingAddress.append(billingCity + ", ");
-        billingAddress.append(billingState + " ");
-        billingAddress.append(billingZipCode);
-        String yourBillingAddress = billingAddress.toString();
 
+        //START replace this code with a call to the method to do the formatting
+        //Built a String for Billing Address
+        String yourBillingAddress = createFormattedAddress(billingStreet, billingCity, billingState,billingZipCode);
+
+        //END
 
         System.out.println("Is your Billing Address the same as your Shipping Address?(Yes or No) \n");
         String isAddressSame = scanner.nextLine().trim();
 
-        if (isAddressSame.equalsIgnoreCase("Yes")){
+        if (isAddressSame.equalsIgnoreCase("Yes")) {
+
             System.out.println(fullName + "\n" + "\n" +
                     "Billing Address: \n" +
-                   yourBillingAddress + "\n" +
+                    yourBillingAddress + "\n" +
                     "\n" +
                     "Shipping Address: \n" +
                     yourBillingAddress + "\n");
+
         } else if (isAddressSame.equalsIgnoreCase("No")) {
 
             System.out.println("Enter Your Shipping Address: \n" +
@@ -59,13 +60,10 @@ public class Main {
             System.out.println("Zip Code: ");
             String shippingZipCode = scanner.nextLine().trim();
 
+            //START replace this code with a call to the method to get a formatted string.
             //Built a String for Shipping Address
-            StringBuilder shippingAddress = new StringBuilder();
-            shippingAddress.append(shippingStreet + "\n");
-            shippingAddress.append(shippingCity + ", ");
-            shippingAddress.append(shippingState + " ");
-            shippingAddress.append(shippingZipCode);
-            String yourShippingAddress = shippingAddress.toString();
+            String yourShippingAddress = createFormattedAddress(shippingStreet,shippingCity,shippingState,shippingZipCode);
+            //END
 
             System.out.println(fullName + "\n" + "\n" +
                     "Billing Address: \n" +
@@ -74,12 +72,32 @@ public class Main {
                     "Shipping Address: \n" +
                     yourShippingAddress + "\n");
 
+        } else {
 
-        }
-        else {
             System.out.println("Invalid Entry Please Try Again");
             //edit to try again
+
         }
 
     }
+
+    public static String createFormattedAddress(String street, String city, String state, String zipCode){
+
+            StringBuilder formattedAddress = new StringBuilder();
+
+            //Built a String for Formatted Address
+            formattedAddress.append(street + "\n");
+            formattedAddress.append(city + ", ");
+            formattedAddress.append(state + " ");
+            formattedAddress.append(zipCode);
+
+            String yourFormattedAddress = formattedAddress.toString();
+
+
+        return yourFormattedAddress;
+
+
+
+    }
+
 }

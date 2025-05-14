@@ -2,7 +2,7 @@ package com.pluralsight;
 
 import java.util.Scanner;
 
-public class Main {
+public class Main4 {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -25,13 +25,9 @@ public class Main {
         System.out.println("Zip Code: ");
         String billingZipCode = scanner.nextLine().trim();
 
+        //step 2 create a billing address using the method from step one
         //Built a String for Billing Address
-        StringBuilder billingAddress = new StringBuilder();
-        billingAddress.append(billingStreet + "\n");
-        billingAddress.append(billingCity + ", ");
-        billingAddress.append(billingState + " ");
-        billingAddress.append(billingZipCode);
-        String yourBillingAddress = billingAddress.toString();
+       String yourBillingAddress = createFormattedAddress(billingStreet,billingCity,billingState,billingZipCode);
 
 
         System.out.println("Is your Billing Address the same as your Shipping Address?(Yes or No) \n");
@@ -59,13 +55,9 @@ public class Main {
             System.out.println("Zip Code: ");
             String shippingZipCode = scanner.nextLine().trim();
 
+            //step 3 repeat step to for shipping address
             //Built a String for Shipping Address
-            StringBuilder shippingAddress = new StringBuilder();
-            shippingAddress.append(shippingStreet + "\n");
-            shippingAddress.append(shippingCity + ", ");
-            shippingAddress.append(shippingState + " ");
-            shippingAddress.append(shippingZipCode);
-            String yourShippingAddress = shippingAddress.toString();
+            String yourShippingAddress = createFormattedAddress(shippingStreet,shippingCity,shippingState,shippingZipCode);
 
             System.out.println(fullName + "\n" + "\n" +
                     "Billing Address: \n" +
@@ -73,13 +65,24 @@ public class Main {
                     "\n" +
                     "Shipping Address: \n" +
                     yourShippingAddress + "\n");
-
-
         }
         else {
             System.out.println("Invalid Entry Please Try Again");
             //edit to try again
         }
+
+    }
+    //step 1 create a string builder method
+    public static String createFormattedAddress(String street, String city, String state, String zip){
+
+        StringBuilder formattedAddress = new StringBuilder();
+        formattedAddress.append(street + "\n");
+        formattedAddress.append(city + ", ");
+        formattedAddress.append(state + " ");
+        formattedAddress.append(zip);
+        String yourFormattedAddress = formattedAddress.toString();
+
+        return yourFormattedAddress;
 
     }
 }
